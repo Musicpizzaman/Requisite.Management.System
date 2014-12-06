@@ -1,0 +1,27 @@
+	Dim conn As New OleDb.OleDbConnection("PROVIDER=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\Items\Ships.mdb")
+        Dim dt As New DataTable
+        Dim adapter As OleDb.OleDbDataAdapter
+        Try
+            If (conn.State = ConnectionState.Closed) Then
+                conn.Open()
+            End If
+            adapter = New OleDb.OleDbDataAdapter("SELECT * FROM Ships", conn)
+            adapter.Fill(dt)
+            Ships.asmar = New Submarine(dt.Rows(0).Item(1).ToString, dt.Rows(0).Item(2))
+            Ships.acrus = New Cruiser(dt.Rows(4).Item(1).ToString, dt.Rows(4).Item(2))
+            Ships.abtle = New Battleship(dt.Rows(2).Item(1).ToString, dt.Rows(2).Item(2))
+            Ships.apatr = New PatrolBoat(dt.Rows(3).Item(1).ToString, dt.Rows(3).Item(2))
+            Ships.acarr = New Carrier(dt.Rows(1).Item(1).ToString, dt.Rows(1).Item(2))
+
+            Ships.esmar = New Submarine(dt.Rows(0).Item(1).ToString, dt.Rows(0).Item(2))
+            Ships.ecrus = New Cruiser(dt.Rows(4).Item(1).ToString, dt.Rows(4).Item(2))
+            Ships.ebtle = New Battleship(dt.Rows(2).Item(1).ToString, dt.Rows(2).Item(2))
+            Ships.epatr = New PatrolBoat(dt.Rows(3).Item(1).ToString, dt.Rows(3).Item(2))
+            Ships.ecarr = New Carrier(dt.Rows(1).Item(1).ToString, dt.Rows(1).Item(2))
+        Catch ex As Exception
+            MsgBox("Error with IO")
+        Finally
+            conn.Close()
+        End Try
+
+http://msdn.microsoft.com/en-us/library/bb386924(v=vs.110).aspx
